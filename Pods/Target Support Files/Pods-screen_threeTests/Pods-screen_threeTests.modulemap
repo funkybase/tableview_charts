@@ -1,0 +1,6 @@
+framework module Pods_screen_threeTests {
+  umbrella header "Pods-screen_threeTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
