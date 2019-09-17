@@ -10,6 +10,9 @@ import UIKit
 
 class ChartTableViewController: UITableViewController {
     
+    //TODO
+    // change the color and shape of scatter overlay
+    
     //MARK: Properties
     
     var signals = [Signal]()
@@ -45,9 +48,9 @@ class ChartTableViewController: UITableViewController {
         let signal = signals[indexPath.row]
 
         cell.signalChart.data = signal.data
-        // Configure the cell...
 
         return cell
+        
     }
 
     /*
@@ -98,21 +101,39 @@ class ChartTableViewController: UITableViewController {
     //MARK: Private Methods
     private func loadSampleCharts() {
         //randomize scatter plot index
-        let val1: [Double] = (0..<10).map { (i) -> Double in
+        let val1: [Double] = (0..<20).map { (i) -> Double in
             return Double.random(in: 10.0 ..< 20.0)
         }
         
-        let val2: [Double] = (0..<10).map { (i) -> Double in
+        let val2: [Double] = (0..<20).map { (i) -> Double in
             return Double.random(in: 15.0 ..< 25.0)
         }
         
-        let val3: [Double] = (0..<10).map { (i) -> Double in
+        let val3: [Double] = (0..<20).map { (i) -> Double in
             return Double.random(in: 5.0 ..< 15.0)
         }
         
-        let signal1 = Signal(values: val1, label: "CHWST")
-        let signal2 = Signal(values: val2, label: "CWST")
-        let signal3 = Signal(values: val3, label: "CHWRT")
+        //randomize array of indices from 0 to count - 1 of values
+        var randomArray = [Int]()
+        for var index in 0 ..< 9 {
+            let randomNumber: Int = Int.random(in: 0 ..< 20)
+            
+            if randomArray.contains(randomNumber) {
+                index = index - 1
+            } else {
+                randomArray.append(randomNumber)
+            }
+        }
+        print(randomArray)
+        
+        let suppress = Array(randomArray[..<5]).sorted()
+        let alarm = Array(randomArray[5...]).sorted()
+        print(suppress)
+        print(alarm)
+        
+        let signal1 = Signal(values: val1, suppressIndex: suppress, alarmIndex: alarm, labels: ["CHWST", "supressed", "alarm"])
+        let signal2 = Signal(values: val2, suppressIndex: suppress, alarmIndex: alarm, labels: ["CWST", "supressed", "alarm"])
+        let signal3 = Signal(values: val3, suppressIndex: suppress, alarmIndex: alarm, labels: ["CHWRT", "supressed", "alarm"])
         
         signals += [signal1, signal2, signal3]
     }

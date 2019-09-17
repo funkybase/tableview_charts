@@ -12,7 +12,7 @@ import Charts
 class ChartTableViewCell: UITableViewCell {
     
     //MARK: Properties
-    @IBOutlet weak var signalChart: LineChartView!
+    @IBOutlet weak var signalChart: CombinedChartView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

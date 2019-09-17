@@ -25,7 +25,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="339.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nCS-iv-u85" userLabel="SignalChart" customClass="LineChartView" customModule="Charts">
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nCS-iv-u85" userLabel="SignalChart" customClass="CombinedChartView" customModule="Charts">
                                             <rect key="frame" x="20" y="11" width="728" height="315"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -33,7 +33,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="signalChart" destination="nCS-iv-u85" id="rAg-gq-ckQ"/>
+                                    <outlet property="signalChart" destination="nCS-iv-u85" id="YTf-lR-hVm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -12,17 +12,43 @@ import Charts
 class Signal {
     
     //MARK: Properties
-    var data: LineChartData
+    var data: CombinedChartData
     
     //MARK: Initialization
-    init(values: [Double], label: String) {//add scatter overlay in future
-    
-        let entries = values.map { (i) -> ChartDataEntry in
-            return ChartDataEntry(x: Double(values.firstIndex(of: i)!), y: i)
+    init(values: [Double], suppressIndex: [Int], alarmIndex: [Int], labels: [String]) {//add scatter overlay in future
+        var entries = [ChartDataEntry]()
+        var suppressEntries = [ChartDataEntry]()
+        var alarmEntries = [ChartDataEntry]()
+        
+        for index in 1...values.count {
+            let entry = ChartDataEntry(x: Double(index - 1), y: values[index - 1])
+            entries.append(entry)
         }
-        let chartDataSet = LineChartDataSet(entries: entries, label: label)
-        self.data = LineChartData(dataSet: chartDataSet)
-    
+        
+        for index in 0..<suppressIndex.count {
+            let suppressEntry = ChartDataEntry(x: Double(suppressIndex[index]), y: values[suppressIndex[index]])
+            suppressEntries.append(suppressEntry)
+        }
+        
+        for index in 0..<alarmIndex.count {
+            let alarmEntry = ChartDataEntry(x: Double(alarmIndex[index]), y: values[alarmIndex[index]])
+            alarmEntries.append(alarmEntry)
+        }
+        
+        let chartDataSet = LineChartDataSet(entries: entries, label: labels[0])
+        let lineData = LineChartData(dataSet: chartDataSet)
+        
+        let suppressScatterDataSet = ScatterChartDataSet(entries: suppressEntries, label: labels[1])
+        let alarmScatterDataSet = ScatterChartDataSet(entries: alarmEntries, label: labels[2])
+        let scatterData = ScatterChartData(dataSets: [suppressScatterDataSet, alarmScatterDataSet])
+        
+        let combinedData = CombinedChartData()
+        combinedData.lineData = lineData
+        combinedData.scatterData = scatterData
+        
+        self.data = combinedData
+        //add scatterchartdata: dataSets
+        //change to combinedchartdata
     }
     
     
