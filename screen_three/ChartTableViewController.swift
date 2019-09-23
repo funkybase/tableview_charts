@@ -16,16 +16,22 @@ class ChartTableViewController: UITableViewController {
     //MARK: Properties
     
     var signals = [Signal]()
+    var flagToDisplay: Int = 0
+    var inputs = [[Double]]()
+    var axisNames = [String]()
+    
+    let numOfInputs: Int = 50
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         loadSampleCharts()
+        
     }
 
     // MARK: - Table view data source
@@ -38,6 +44,7 @@ class ChartTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return signals.count
+        
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -46,8 +53,12 @@ class ChartTableViewController: UITableViewController {
         }
         
         let signal = signals[indexPath.row]
+        let axisName = axisNames[indexPath.row]
 
         cell.signalChart.data = signal.data
+        cell.yAxis.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+        // set text by calling the function
+        cell.yAxis.text = axisName
 
         return cell
         
@@ -100,23 +111,12 @@ class ChartTableViewController: UITableViewController {
     
     //MARK: Private Methods
     private func loadSampleCharts() {
-        //randomize scatter plot index
-        let val1: [Double] = (0..<20).map { (i) -> Double in
-            return Double.random(in: 10.0 ..< 20.0)
-        }
-        
-        let val2: [Double] = (0..<20).map { (i) -> Double in
-            return Double.random(in: 15.0 ..< 25.0)
-        }
-        
-        let val3: [Double] = (0..<20).map { (i) -> Double in
-            return Double.random(in: 5.0 ..< 15.0)
-        }
+        generateInputValues(numOfInputs)
         
         //randomize array of indices from 0 to count - 1 of values
         var randomArray = [Int]()
-        for var index in 0 ..< 9 {
-            let randomNumber: Int = Int.random(in: 0 ..< 20)
+        for var index in 0 ..< (numOfInputs/3) {
+            let randomNumber: Int = Int.random(in: 0 ..< numOfInputs)
             
             if randomArray.contains(randomNumber) {
                 index = index - 1
@@ -124,18 +124,131 @@ class ChartTableViewController: UITableViewController {
                 randomArray.append(randomNumber)
             }
         }
-        print(randomArray)
         
-        let suppress = Array(randomArray[..<5]).sorted()
-        let alarm = Array(randomArray[5...]).sorted()
-        print(suppress)
-        print(alarm)
+        let suppress = Array(randomArray[..<(randomArray.count/2)]).sorted()
+        let alarm = Array(randomArray[((randomArray.count/2) + 1)...]).sorted()
         
-        let signal1 = Signal(values: val1, suppressIndex: suppress, alarmIndex: alarm, labels: ["CHWST", "supressed", "alarm"])
-        let signal2 = Signal(values: val2, suppressIndex: suppress, alarmIndex: alarm, labels: ["CWST", "supressed", "alarm"])
-        let signal3 = Signal(values: val3, suppressIndex: suppress, alarmIndex: alarm, labels: ["CHWRT", "supressed", "alarm"])
-        
-        signals += [signal1, signal2, signal3]
+        for input in inputs {
+            signals += [Signal(values: input, suppressIndex: suppress, alarmIndex: alarm)]
+        }
+        // make a set axis names method
+        setAxisNames()
     }
-
+    
+    private func generateInputValues(_ num: Int) {
+        
+        var val1 = [Double]()
+        var val2 = [Double]()
+        var val3 = [Double]()
+        
+        switch flagToDisplay {
+        case 1:
+            //simulate rule_ch2
+            //CHWST
+            val1 = (0..<num).map { (i) -> Double in
+                return Double.random(in: 7.5 ..< 12.0)
+            }
+            //CHWRT
+            val2 = (0..<num).map { (i) -> Double in
+                return Double.random(in: 12.0 ..< 15.0)
+            }
+            //FLOWRATE
+            val3 = (0..<num).map { (i) -> Double in
+                return Double.random(in: 35.0 ..< 55.0)
+            }
+            
+        case 2:
+            //simulate rule_ch8
+            //runstat
+            val1 = (0..<num).map { (i) -> Double in
+                return Double.random(in: 0 ..< 40.0)
+            }
+            //efficiency
+            val2 = (0..<num).map { (i) -> Double in
+                return Double(Int.random(in: 0 ... 1)) * 12.8
+            }
+            
+        case 3,4:
+            //simulate rule_chwp1
+            (val1, val2) = inputsForChwpOneAndTwo(num)
+        
+//        case 4:
+//            //simulate rule_chwp2
+//            (val1, val2) = inputsForChwpOneAndTwo(num)
+            
+        case 5:
+            //simulate rule_chwp6
+            //VSD
+            val1 = (0..<num).map { (i) -> Double in
+                return Double(Int.random(in: 0 ... 1)) * 16.8
+            }
+            //differential pressure
+            val2 = (0..<num).map { (i) -> Double in
+                return Double.random(in: 3.0 ..< 125.0)
+            }
+        
+        case 6,7:
+            //simulate rule_ct2
+            (val1, val2, val3) = inputsForCtTwoAndThree(num)
+        
+//        case 7:
+//            //simulate rule_ct3
+//            (val1, val2, val3) = inputsForCtTwoAndThree(num)
+            
+        default:
+            //arbitrary sentence
+            print("Nothing to do here")
+        }
+        
+        if val3.isEmpty {
+            inputs += [val1, val2]
+        } else {
+            inputs += [val1, val2, val3]
+        }
+    }
+    
+    private func inputsForChwpOneAndTwo(_ num: Int) -> ([Double], [Double]) {
+        //differential pressure
+        let val1: [Double] = (0..<num).map { (i) -> Double in
+            return Double.random(in: 3.0 ..< 125.0)
+        }
+        //setpoint pressure
+        let val2: [Double] = (0..<50).map { (i) -> Double in
+            return Double(Int.random(in: 0 ... 1)) * 80
+        }
+        return (val1, val2)
+    }
+    
+    private func inputsForCtTwoAndThree(_ num: Int) -> ([Double], [Double], [Double]) {
+        //CWST
+        let val1: [Double] = (0..<num).map { (i) -> Double in
+            return Double.random(in: 27.0 ..< 31.0)
+        }
+        //CWRT
+        let val2: [Double] = (0..<num).map { (i) -> Double in
+            return Double.random(in: 31.0 ..< 34.0)
+        }
+        //FLOWRATE
+        let val3: [Double] = (0..<num).map { (i) -> Double in
+            return Double.random(in: 35.0 ..< 55.0)
+        }
+        return (val1, val2, val3)
+    }
+    
+    private func setAxisNames() {
+        switch flagToDisplay {
+        case 1:
+            axisNames += ["CHWST", "CHWRT", "FLOWRATE"]
+        case 2:
+            axisNames += ["RUN STATUS", "Efficiency"]
+        case 3,4:
+            axisNames += ["Differential Pressure", "Setpoint Pressure"]
+        case 5:
+            axisNames += ["CHWP VSD CMD", "Differential Pressure"]
+        case 6,7:
+            axisNames += ["CWST", "CWRT", "FLOWRATE"]
+        default:
+            print("Nothing to do here")
+        }
+    }
 }

@@ -17,6 +17,7 @@
 		29A02C37232F3A86002A5604 /* ChartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A02C36232F3A86002A5604 /* ChartTableViewController.swift */; };
 		29A02C39232F3BDA002A5604 /* ChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A02C38232F3BDA002A5604 /* ChartTableViewCell.swift */; };
 		29A02C3B232F6170002A5604 /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A02C3A232F6170002A5604 /* Signal.swift */; };
+		29B49B6923346FDC00AACEFC /* MLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B49B6823346FDC00AACEFC /* MLViewController.swift */; };
 		309200B1CE3A1FBA6149EDAB /* Pods_screen_three.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F311E41B5A8274D3A3196C1 /* Pods_screen_three.framework */; };
 		3FE333DDCA8DFFC9C25EBF74 /* Pods_screen_threeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CAC3E1920C2CC989ABE7EB /* Pods_screen_threeTests.framework */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 		29A02C36232F3A86002A5604 /* ChartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTableViewController.swift; sourceTree = "<group>"; };
 		29A02C38232F3BDA002A5604 /* ChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTableViewCell.swift; sourceTree = "<group>"; };
 		29A02C3A232F6170002A5604 /* Signal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
+		29B49B6823346FDC00AACEFC /* MLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLViewController.swift; sourceTree = "<group>"; };
 		29CAC3E1920C2CC989ABE7EB /* Pods_screen_threeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_screen_threeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		325DBF8A8D82E5DA1E4179A0 /* Pods-screen_three.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-screen_three.debug.xcconfig"; path = "Target Support Files/Pods-screen_three/Pods-screen_three.debug.xcconfig"; sourceTree = "<group>"; };
 		37F765ED8A620186C5A7A35E /* Pods-screen_threeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-screen_threeTests.debug.xcconfig"; path = "Target Support Files/Pods-screen_threeTests/Pods-screen_threeTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				29A02C3A232F6170002A5604 /* Signal.swift */,
 				29A02C06232F3060002A5604 /* AppDelegate.swift */,
 				29A02C0A232F3060002A5604 /* Main.storyboard */,
+				29B49B6823346FDC00AACEFC /* MLViewController.swift */,
 				29A02C38232F3BDA002A5604 /* ChartTableViewCell.swift */,
 				29A02C0D232F3062002A5604 /* Assets.xcassets */,
 				29A02C0F232F3062002A5604 /* LaunchScreen.storyboard */,
@@ -392,6 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29B49B6923346FDC00AACEFC /* MLViewController.swift in Sources */,
 				29A02C39232F3BDA002A5604 /* ChartTableViewCell.swift in Sources */,
 				29A02C3B232F6170002A5604 /* Signal.swift in Sources */,
 				29A02C37232F3A86002A5604 /* ChartTableViewController.swift in Sources */,

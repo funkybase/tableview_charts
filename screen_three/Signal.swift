@@ -15,7 +15,7 @@ class Signal {
     var data: CombinedChartData
     
     //MARK: Initialization
-    init(values: [Double], suppressIndex: [Int], alarmIndex: [Int], labels: [String]) {//add scatter overlay in future
+    init(values: [Double], suppressIndex: [Int], alarmIndex: [Int]) {//add scatter overlay in future
         var entries = [ChartDataEntry]()
         var suppressEntries = [ChartDataEntry]()
         var alarmEntries = [ChartDataEntry]()
@@ -35,11 +35,16 @@ class Signal {
             alarmEntries.append(alarmEntry)
         }
         
-        let chartDataSet = LineChartDataSet(entries: entries, label: labels[0])
+        let chartDataSet = LineChartDataSet(entries: entries, label: "signal")
+        chartDataSet.colors = [NSUIColor.black]
+        chartDataSet.drawCirclesEnabled = false
+        chartDataSet.drawValuesEnabled = false
         let lineData = LineChartData(dataSet: chartDataSet)
         
-        let suppressScatterDataSet = ScatterChartDataSet(entries: suppressEntries, label: labels[1])
-        let alarmScatterDataSet = ScatterChartDataSet(entries: alarmEntries, label: labels[2])
+        let suppressScatterDataSet = ScatterChartDataSet(entries: suppressEntries, label: "suppressed")
+        suppressScatterDataSet.colors = [NSUIColor.blue]
+        let alarmScatterDataSet = ScatterChartDataSet(entries: alarmEntries, label: "alarm")
+        alarmScatterDataSet.colors = [NSUIColor.red]
         let scatterData = ScatterChartData(dataSets: [suppressScatterDataSet, alarmScatterDataSet])
         
         let combinedData = CombinedChartData()

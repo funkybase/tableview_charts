@@ -13,6 +13,8 @@ class ChartTableViewCell: UITableViewCell {
     
     //MARK: Properties
     @IBOutlet weak var signalChart: CombinedChartView!
+    @IBOutlet weak var yAxis: UILabel!
+    @IBOutlet weak var xAxis: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
