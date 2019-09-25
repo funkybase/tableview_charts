@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		26C2BADE7C2567FBD445F6E4 /* Pods_screen_threeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6D7BF01910825280EC4DEBF /* Pods_screen_threeUITests.framework */; };
+		2936BA37233B089E00879AB4 /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2936BA36233B089E00879AB4 /* PieChartViewController.swift */; };
 		29A02C07232F3060002A5604 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A02C06232F3060002A5604 /* AppDelegate.swift */; };
 		29A02C0C232F3060002A5604 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29A02C0A232F3060002A5604 /* Main.storyboard */; };
 		29A02C0E232F3062002A5604 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29A02C0D232F3062002A5604 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 		29A02C39232F3BDA002A5604 /* ChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A02C38232F3BDA002A5604 /* ChartTableViewCell.swift */; };
 		29A02C3B232F6170002A5604 /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A02C3A232F6170002A5604 /* Signal.swift */; };
 		29B49B6923346FDC00AACEFC /* MLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B49B6823346FDC00AACEFC /* MLViewController.swift */; };
+		29FDF2ED233B01870054D359 /* Spark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FDF2EC233B01870054D359 /* Spark.swift */; };
 		309200B1CE3A1FBA6149EDAB /* Pods_screen_three.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F311E41B5A8274D3A3196C1 /* Pods_screen_three.framework */; };
 		3FE333DDCA8DFFC9C25EBF74 /* Pods_screen_threeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CAC3E1920C2CC989ABE7EB /* Pods_screen_threeTests.framework */; };
 /* End PBXBuildFile section */
@@ -41,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		00B3D4781D8B02E7DEB95BF6 /* Pods-screen_three.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-screen_three.release.xcconfig"; path = "Target Support Files/Pods-screen_three/Pods-screen_three.release.xcconfig"; sourceTree = "<group>"; };
+		2936BA36233B089E00879AB4 /* PieChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartViewController.swift; sourceTree = "<group>"; };
 		29A02C03232F3060002A5604 /* screen_three.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = screen_three.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29A02C06232F3060002A5604 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29A02C0B232F3060002A5604 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,6 +61,7 @@
 		29A02C3A232F6170002A5604 /* Signal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		29B49B6823346FDC00AACEFC /* MLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLViewController.swift; sourceTree = "<group>"; };
 		29CAC3E1920C2CC989ABE7EB /* Pods_screen_threeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_screen_threeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29FDF2EC233B01870054D359 /* Spark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spark.swift; sourceTree = "<group>"; };
 		325DBF8A8D82E5DA1E4179A0 /* Pods-screen_three.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-screen_three.debug.xcconfig"; path = "Target Support Files/Pods-screen_three/Pods-screen_three.debug.xcconfig"; sourceTree = "<group>"; };
 		37F765ED8A620186C5A7A35E /* Pods-screen_threeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-screen_threeTests.debug.xcconfig"; path = "Target Support Files/Pods-screen_threeTests/Pods-screen_threeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		41690B643402969CA08DC450 /* Pods-screen_threeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-screen_threeUITests.release.xcconfig"; path = "Target Support Files/Pods-screen_threeUITests/Pods-screen_threeUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -124,6 +128,8 @@
 				29A02C3A232F6170002A5604 /* Signal.swift */,
 				29A02C06232F3060002A5604 /* AppDelegate.swift */,
 				29A02C0A232F3060002A5604 /* Main.storyboard */,
+				2936BA36233B089E00879AB4 /* PieChartViewController.swift */,
+				29FDF2EC233B01870054D359 /* Spark.swift */,
 				29B49B6823346FDC00AACEFC /* MLViewController.swift */,
 				29A02C38232F3BDA002A5604 /* ChartTableViewCell.swift */,
 				29A02C0D232F3062002A5604 /* Assets.xcassets */,
@@ -396,9 +402,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				29B49B6923346FDC00AACEFC /* MLViewController.swift in Sources */,
+				29FDF2ED233B01870054D359 /* Spark.swift in Sources */,
 				29A02C39232F3BDA002A5604 /* ChartTableViewCell.swift in Sources */,
 				29A02C3B232F6170002A5604 /* Signal.swift in Sources */,
 				29A02C37232F3A86002A5604 /* ChartTableViewController.swift in Sources */,
+				2936BA37233B089E00879AB4 /* PieChartViewController.swift in Sources */,
 				29A02C07232F3060002A5604 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,18 +8,29 @@
 
 import UIKit
 import iOSDropDown
+import Charts
 
 class MLViewController: UIViewController {
     
     //MARK: Properties
     @IBOutlet weak var ruleSelect: DropDown!
+    @IBOutlet weak var MLChart: LineChartView!
+    @IBOutlet weak var axisLabel: UILabel!
     
     var idToLoad : Int = 0
+    var numbers = [Double]()
+    var numbers2 = [Double]()
+    var numbers3 = [Double]()
+    var chartTitle: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureDropdown()
+        
+        configureChart()
+        
+        axisLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
     }
     
 
@@ -49,6 +60,25 @@ class MLViewController: UIViewController {
         ruleSelect.didSelect{(selectedText , index ,id) in
             self.idToLoad = id
         }
+    }
+    
+    private func randomiseInputs(){
+        numbers = (0..<20).map { (i) -> Double in
+            return Double.random(in: 10.0 ..< 20.0)}
+        
+        numbers2 = (0..<20).map { (i) -> Double in
+            return Double.random(in: 10.0 ..< 20.0)}
+        
+        numbers3 = (0..<20).map { (i) -> Double in
+            return Double.random(in: 10.0 ..< 20.0)}
+    }
+    
+    private func configureChart() {
+        randomiseInputs()
+        
+        let chart = Spark(sparkValues: numbers, numbers2, numbers3)
+        
+        MLChart.data = chart.data
     }
 
 }
