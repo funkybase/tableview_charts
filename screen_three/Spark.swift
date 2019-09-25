@@ -20,7 +20,7 @@ class Spark {
         
         var random = [Int]()
         
-        for var i in 0 ..< sparkValues.count {
+        for var i in 0 ..< colours.count {
             let randomNumber: Int = Int.random(in: 0 ..< colours.count)
             
             if random.contains(randomNumber) {

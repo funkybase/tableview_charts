@@ -21,7 +21,6 @@ class MLViewController: UIViewController {
     var numbers = [Double]()
     var numbers2 = [Double]()
     var numbers3 = [Double]()
-    var chartTitle: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +46,7 @@ class MLViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? ChartTableViewController {
             destinationVC.flagToDisplay = self.idToLoad
+            destinationVC.navigationItem.title = "\(self.navigationItem.title!) - Spark \(self.idToLoad)"
         }
     }
     

@@ -36,12 +36,12 @@ class PieChartViewController: UIViewController {
     }
     
     @IBAction func tappedChartTwo(_ sender: Any) {
-        self.buttonTapped = 1
+        self.buttonTapped = 2
         self.performSegue(withIdentifier: "showML", sender: self)
     }
     
     @IBAction func tappedChartThree(_ sender: Any) {
-        self.buttonTapped = 1
+        self.buttonTapped = 3
         self.performSegue(withIdentifier: "showML", sender: self)
     }
     
@@ -49,8 +49,8 @@ class PieChartViewController: UIViewController {
         
         if (segue.identifier == "showML") {
             if let destinationVC = segue.destination as? MLViewController {
-                let chart = "Chart\(self.buttonTapped)"
-                destinationVC.chartTitle = chart
+                let chart = "Chart \(self.buttonTapped)"
+                destinationVC.navigationItem.title = chart
             }
         }
     }
