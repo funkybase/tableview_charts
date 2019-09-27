@@ -135,6 +135,7 @@ class ChartTableViewController: UITableViewController {
         setAxisNames()
     }
     
+    
     private func generateInputValues(_ num: Int) {
         
         var val1 = [Double]()

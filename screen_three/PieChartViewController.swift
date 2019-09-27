@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import Charts
 
 class PieChartViewController: UIViewController {
     
+    
+    @IBOutlet weak var chart: PieChartView!
     var buttonTapped: Int = 0
-
+    var sparkList = ["Spark 1", "Spark 2", "Spark 3", "Spark 4", "Spark 5", "Spark 6", "Spark 7"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configureCharts()
         // Do any additional setup after loading the view.
     }
     
@@ -43,6 +47,26 @@ class PieChartViewController: UIViewController {
     @IBAction func tappedChartThree(_ sender: Any) {
         self.buttonTapped = 3
         self.performSegue(withIdentifier: "showML", sender: self)
+    }
+    
+    private func configureCharts() {
+        //for chart in pieCharts {
+        let entries = (0..<7).map { (i) -> PieChartDataEntry in
+            return PieChartDataEntry(value: Double.random(in: 11.0 ..< 22.0),
+                                     label: sparkList[i % sparkList.count])
+        }
+        //let dataset = PieChartDataSet(entries: entries, label: chillerList[pieCharts.firstIndex(of: chart)!])
+        let dataset = PieChartDataSet(entries: entries, label: "Chiller 1")
+        
+        let data = PieChartData(dataSet: dataset)
+        
+        let format = NumberFormatter()
+        format.numberStyle = .none
+        let formatter = DefaultValueFormatter(formatter: format)
+        data.setValueFormatter(formatter)
+        
+        self.chart.data = data
+        //}
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

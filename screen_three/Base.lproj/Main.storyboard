@@ -164,12 +164,18 @@
                                     <action selector="tappedChartThree:" destination="NZE-x6-smS" eventType="touchUpInside" id="JTJ-Vz-4NS"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AA0-i9-ic5" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="55" y="125" width="238" height="174"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="uJO-hA-9Wh"/>
                     </view>
                     <navigationItem key="navigationItem" id="0V4-5r-nc6"/>
                     <connections>
+                        <outlet property="chart" destination="AA0-i9-ic5" id="0yS-Hc-z4K"/>
                         <segue destination="KkQ-2d-51U" kind="show" identifier="showML" id="OCT-IB-wnF"/>
                     </connections>
                 </viewController>
