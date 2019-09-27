@@ -11,8 +11,11 @@ import Charts
 
 class PieChartViewController: UIViewController {
     
+    @IBOutlet weak var chart1: PieChartView!
+    @IBOutlet weak var chart2: PieChartView!
+    @IBOutlet weak var chart3: PieChartView!
     
-    @IBOutlet weak var chart: PieChartView!
+    
     var buttonTapped: Int = 0
     var sparkList = ["Spark 1", "Spark 2", "Spark 3", "Spark 4", "Spark 5", "Spark 6", "Spark 7"]
     
@@ -51,22 +54,84 @@ class PieChartViewController: UIViewController {
     
     private func configureCharts() {
         //for chart in pieCharts {
-        let entries = (0..<7).map { (i) -> PieChartDataEntry in
+        let entries1 = (0..<7).map { (i) -> PieChartDataEntry in
             return PieChartDataEntry(value: Double.random(in: 11.0 ..< 22.0),
                                      label: sparkList[i % sparkList.count])
         }
         //let dataset = PieChartDataSet(entries: entries, label: chillerList[pieCharts.firstIndex(of: chart)!])
-        let dataset = PieChartDataSet(entries: entries, label: "Chiller 1")
+        let dataset1 = PieChartDataSet(entries: entries1, label: "")
+        dataset1.colors = colorsOfCharts(numberOfColor: 7)
         
-        let data = PieChartData(dataSet: dataset)
+        let data1 = PieChartData(dataSet: dataset1)
         
-        let format = NumberFormatter()
-        format.numberStyle = .none
-        let formatter = DefaultValueFormatter(formatter: format)
-        data.setValueFormatter(formatter)
+        let format1 = NumberFormatter()
+        format1.numberStyle = .none
+        let formatter1 = DefaultValueFormatter(formatter: format1)
+        data1.setValueFormatter(formatter1)
         
-        self.chart.data = data
+        chart1.data = data1
+        
+        let entries2 = (0..<7).map { (i) -> PieChartDataEntry in
+            return PieChartDataEntry(value: Double.random(in: 11.0 ..< 22.0),
+                                     label: sparkList[i % sparkList.count])
+        }
+        //let dataset = PieChartDataSet(entries: entries, label: chillerList[pieCharts.firstIndex(of: chart)!])
+        let dataset2 = PieChartDataSet(entries: entries2, label: "")
+        dataset2.colors = colorsOfCharts(numberOfColor: 7)
+        
+        let data2 = PieChartData(dataSet: dataset2)
+        
+        let format2 = NumberFormatter()
+        format2.numberStyle = .none
+        let formatter2 = DefaultValueFormatter(formatter: format2)
+        data2.setValueFormatter(formatter2)
+        
+        chart2.data = data2
+        
+        let entries3 = (0..<7).map { (i) -> PieChartDataEntry in
+            return PieChartDataEntry(value: Double.random(in: 11.0 ..< 22.0),
+                                     label: sparkList[i % sparkList.count])
+        }
+        //let dataset = PieChartDataSet(entries: entries, label: chillerList[pieCharts.firstIndex(of: chart)!])
+        let dataset3 = PieChartDataSet(entries: entries3, label: "")
+        dataset3.colors = colorsOfCharts(numberOfColor: 7)
+        
+        let data3 = PieChartData(dataSet: dataset3)
+        
+        let format3 = NumberFormatter()
+        format3.numberStyle = .none
+        let formatter3 = DefaultValueFormatter(formatter: format3)
+        data3.setValueFormatter(formatter3)
+        
+        chart3.data = data3
         //}
+    }
+    
+    private func colorsOfCharts(numberOfColor: Int) -> [UIColor] {
+        var colors: [UIColor] = []
+        for _ in 0..<numberOfColor {
+            let red = Double(arc4random_uniform(256))
+            let green = Double(arc4random_uniform(256))
+            let blue = Double(arc4random_uniform(256))
+            let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
+            colors.append(color)
+        }
+        return colors
+    }
+    
+    @IBAction func pressChartOne(_ sender: Any) {
+        self.buttonTapped = 1
+        self.performSegue(withIdentifier: "showML", sender: self)
+    }
+    
+    @IBAction func pressChartTwo(_ sender: Any) {
+        self.buttonTapped = 3
+        self.performSegue(withIdentifier: "showML", sender: self)
+    }
+    
+    @IBAction func pressChartThree(_ sender: Any) {
+        self.buttonTapped = 2
+        self.performSegue(withIdentifier: "showML", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -164,10 +164,41 @@
                                     <action selector="tappedChartThree:" destination="NZE-x6-smS" eventType="touchUpInside" id="JTJ-Vz-4NS"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AA0-i9-ic5" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="55" y="125" width="238" height="174"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Lg-Cb-lp6" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="40" y="82" width="242" height="242"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="inr-4Q-D1b" appends="YES" id="mJU-Zq-1Mg"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GW6-ZS-Fmk" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="492" y="82" width="242" height="242"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="JZ4-N6-JDV" appends="YES" id="JUN-BT-GPo"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bSG-pk-EX9" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="40" y="355" width="242" height="242"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ecv-xx-6Id" appends="YES" id="qRf-oM-Ug5"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -175,11 +206,28 @@
                     </view>
                     <navigationItem key="navigationItem" id="0V4-5r-nc6"/>
                     <connections>
-                        <outlet property="chart" destination="AA0-i9-ic5" id="0yS-Hc-z4K"/>
+                        <outlet property="chart1" destination="3Lg-Cb-lp6" id="wR4-H6-Wl2"/>
+                        <outlet property="chart2" destination="GW6-ZS-Fmk" id="Rje-at-U1d"/>
+                        <outlet property="chart3" destination="bSG-pk-EX9" id="NmG-VT-qVZ"/>
                         <segue destination="KkQ-2d-51U" kind="show" identifier="showML" id="OCT-IB-wnF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0rc-7o-cIu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="inr-4Q-D1b">
+                    <connections>
+                        <action selector="pressChartOne:" destination="NZE-x6-smS" id="HyE-ja-xiz"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="ecv-xx-6Id">
+                    <connections>
+                        <action selector="pressChartTwo:" destination="NZE-x6-smS" id="BQP-5n-8gb"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="JZ4-N6-JDV">
+                    <connections>
+                        <action selector="pressChartThree:" destination="NZE-x6-smS" id="As2-lH-9Zc"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="275" y="123.63281249999999"/>
         </scene>
