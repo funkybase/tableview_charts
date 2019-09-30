@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Charts
 class ChartTableViewController: UITableViewController {
     
     //TODO
@@ -16,10 +16,11 @@ class ChartTableViewController: UITableViewController {
     //MARK: Properties
     
     var signals = [Signal]()
+    var signalCharts = [CombinedChartView]()
     var flagToDisplay: Int = 0
     var inputs = [[Double]]()
     var axisNames = [String]()
-    
+    var dragDist = CGFloat()
     let numOfInputs: Int = 50
     
     override func viewDidLoad() {
@@ -32,6 +33,16 @@ class ChartTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         loadSampleCharts()
         
+    }
+    
+    //    @IBAction func handlePan(recognizer:UIPanGestureRecognizer) {
+    //        // translation: distance panned by user
+    @objc func draggedView(recognizer: UIPanGestureRecognizer) {
+        let translation = recognizer.translation(in: self.view)
+        dragDist = translation.x
+        
+        chartTranslated(Charts: signalCharts, dX: dragDist, dY: 0.0)
+       
     }
 
     // MARK: - Table view data source
@@ -54,12 +65,19 @@ class ChartTableViewController: UITableViewController {
         
         let signal = signals[indexPath.row]
         let axisName = axisNames[indexPath.row]
-
+        
         cell.signalChart.data = signal.data
         cell.yAxis.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
         // set text by calling the function
         cell.yAxis.text = axisName
-
+        cell.signalChart.dragXEnabled = true
+        cell.signalChart.setVisibleXRangeMaximum(20)
+        cell.signalChart.moveViewToX(15)
+        cell.signalChart.doubleTapToZoomEnabled = false
+        signalCharts.append(cell.signalChart)
+        
+        let recognizer = UIPanGestureRecognizer(target: self, action: #selector(ChartTableViewController.draggedView(recognizer:)))
+        cell.signalChart.addGestureRecognizer(recognizer)
         return cell
         
     }
@@ -110,6 +128,23 @@ class ChartTableViewController: UITableViewController {
     */
     
     //MARK: Private Methods
+    //Assigning mainChart scroll properties to other charts' scroll properties
+    func chartTranslated(Charts: [ChartViewBase], dX: CGFloat, dY: CGFloat) {
+        
+        var currentMatrix = CGAffineTransform()
+        
+        for Chart in Charts {
+            currentMatrix = __CGAffineTransformMake(Chart.viewPortHandler.touchMatrix.a, Chart.viewPortHandler.touchMatrix.b, Chart.viewPortHandler.touchMatrix.c, Chart.viewPortHandler.touchMatrix.d, dX, dY)
+            Chart.viewPortHandler.refresh(newMatrix: currentMatrix, chart: Chart, invalidate: true)
+            }
+        
+    }
+    
+
+        
+
+    
+
     private func loadSampleCharts() {
         generateInputValues(numOfInputs)
         
