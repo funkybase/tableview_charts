@@ -14,7 +14,7 @@ class ChartTableViewController: UITableViewController {
     // change the color and shape of scatter overlay
     
     //MARK: Properties
-    
+    var offset = CGFloat(0)
     var signals = [Signal]()
     var signalCharts = [CombinedChartView]()
     var flagToDisplay: Int = 0
@@ -38,11 +38,13 @@ class ChartTableViewController: UITableViewController {
     //    @IBAction func handlePan(recognizer:UIPanGestureRecognizer) {
     //        // translation: distance panned by user
     @objc func draggedView(recognizer: UIPanGestureRecognizer) {
+        
         let translation = recognizer.translation(in: self.view)
         dragDist = translation.x
-        
         chartTranslated(Charts: signalCharts, dX: dragDist, dY: 0.0)
-       
+        //set new offset
+        offset += dragDist
+        
     }
 
     // MARK: - Table view data source
@@ -72,7 +74,6 @@ class ChartTableViewController: UITableViewController {
         cell.yAxis.text = axisName
         cell.signalChart.dragXEnabled = true
         cell.signalChart.setVisibleXRangeMaximum(20)
-        cell.signalChart.moveViewToX(15)
         cell.signalChart.doubleTapToZoomEnabled = false
         signalCharts.append(cell.signalChart)
         
