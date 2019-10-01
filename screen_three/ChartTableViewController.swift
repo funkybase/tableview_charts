@@ -14,14 +14,18 @@ class ChartTableViewController: UITableViewController {
     // change the color and shape of scatter overlay
     
     //MARK: Properties
-    var offset = CGFloat(0)
     var signals = [Signal]()
     var signalCharts = [CombinedChartView]()
     var flagToDisplay: Int = 0
     var inputs = [[Double]]()
     var axisNames = [String]()
     var dragDist = CGFloat()
+    var offset = CGFloat(0)
     let numOfInputs: Int = 50
+    let pointsPerView: Int = 20
+    private func maxOffset() -> CGFloat {
+        return CGFloat((numOfInputs * pointsPerView) * -1)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,13 +42,21 @@ class ChartTableViewController: UITableViewController {
     //    @IBAction func handlePan(recognizer:UIPanGestureRecognizer) {
     //        // translation: distance panned by user
     @objc func draggedView(recognizer: UIPanGestureRecognizer) {
-        
-        let translation = recognizer.translation(in: self.view)
-        dragDist = translation.x
-        chartTranslated(Charts: signalCharts, dX: dragDist, dY: 0.0)
-        //set new offset
-        offset += dragDist
-        
+        switch recognizer.state {
+        case .ended, .cancelled:
+            offset += dragDist
+            if offset > 0 {
+                offset = 0
+            } else if offset < maxOffset() {
+                offset = maxOffset()
+            }
+        default:
+            let translation = recognizer.translation(in: self.view)
+            dragDist = translation.x
+            chartTranslated(Charts: signalCharts, dX: offset + dragDist, dY: 0.0)
+        }
+        print(offset)
+        print(dragDist)
     }
 
     // MARK: - Table view data source
@@ -73,7 +85,7 @@ class ChartTableViewController: UITableViewController {
         // set text by calling the function
         cell.yAxis.text = axisName
         cell.signalChart.dragXEnabled = true
-        cell.signalChart.setVisibleXRangeMaximum(20)
+        cell.signalChart.setVisibleXRangeMaximum(Double(pointsPerView))
         cell.signalChart.doubleTapToZoomEnabled = false
         signalCharts.append(cell.signalChart)
         
@@ -250,7 +262,7 @@ class ChartTableViewController: UITableViewController {
             return Double.random(in: 3.0 ..< 125.0)
         }
         //setpoint pressure
-        let val2: [Double] = (0..<50).map { (i) -> Double in
+        let val2: [Double] = (0..<num).map { (i) -> Double in
             return Double(Int.random(in: 0 ... 1)) * 80
         }
         return (val1, val2)
