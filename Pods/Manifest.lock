@@ -3,20 +3,24 @@ PODS:
     - Charts/Core (= 3.3.0)
   - Charts/Core (3.3.0)
   - iOSDropDown (0.3.4)
+  - SideMenu (6.2.8)
 
 DEPENDENCIES:
   - Charts
   - iOSDropDown
+  - SideMenu
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Charts
     - iOSDropDown
+    - SideMenu
 
 SPEC CHECKSUMS:
   Charts: e0dd4cd8f257bccf98407b58183ddca8e8d5b578
   iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
+  SideMenu: d3d43c5ea84f5e9af98c17e6b9c0201f93812d53
 
-PODFILE CHECKSUM: b3f5843fcfe0ec768b92c313f1e68cdaba40505a
+PODFILE CHECKSUM: 042838aa92e62686e7a05c32b557eb33439c6711
 
 COCOAPODS: 1.7.5

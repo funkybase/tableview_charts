@@ -36,7 +36,8 @@ class Signal {
         }
         
         let chartDataSet = LineChartDataSet(entries: entries, label: "signal")
-        chartDataSet.colors = [NSUIColor.black]
+        chartDataSet.colors = [NSUIColor.white]
+        chartDataSet.valueTextColor = NSUIColor.white
         chartDataSet.drawCirclesEnabled = false
         chartDataSet.drawValuesEnabled = false
         let lineData = LineChartData(dataSet: chartDataSet)
@@ -46,6 +47,8 @@ class Signal {
         let alarmScatterDataSet = ScatterChartDataSet(entries: alarmEntries, label: "alarm")
         alarmScatterDataSet.colors = [NSUIColor.red]
         let scatterData = ScatterChartData(dataSets: [suppressScatterDataSet, alarmScatterDataSet])
+        
+        scatterData.setValueTextColor(NSUIColor.white)
         
         let combinedData = CombinedChartData()
         combinedData.lineData = lineData

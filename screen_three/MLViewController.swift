@@ -16,8 +16,9 @@ class MLViewController: UIViewController {
     @IBOutlet weak var ruleSelect: DropDown!
     @IBOutlet weak var MLChart: LineChartView!
     @IBOutlet weak var axisLabel: UILabel!
+    @IBOutlet weak var mapTable: UITextView!
     
-    var idToLoad : Int = 0
+    var idToLoad : Int = 1
     var numbers = [Double]()
     var numbers2 = [Double]()
     var numbers3 = [Double]()
@@ -30,6 +31,10 @@ class MLViewController: UIViewController {
         configureChart()
         
         axisLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+        
+        mapTable.text = "Alarm 1:\t\t\tChilled Water temp high\nAlarm 2:\t\t\tChiller cycling\nAlarm 3:\t\t\tPressure differential low\nAlarm 4:\t\t\tPressure differential high\nAlarm 5:\t\t\tVSD speeding\nAlarm 6:\t\t\tCondenser Water temp low\nAlarm 7:\t\t\tCondenser Water temp high"
     }
     
 
@@ -46,20 +51,24 @@ class MLViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? ChartTableViewController {
             destinationVC.flagToDisplay = self.idToLoad
-            destinationVC.navigationItem.title = "\(self.navigationItem.title!) - Spark \(self.idToLoad)"
+            destinationVC.navigationItem.title = "Alarm \(self.idToLoad) Associated Signals over two week period"
         }
     }
     
     //MARK: Private methods
     private func configureDropdown() {
         // Do any additional setup after loading the view.
-        ruleSelect.optionArray = ["Spark 1", "Spark 2", "Spark 3", "Spark 4", "Spark 5", "Spark 6", "Spark 7"]
+        ruleSelect.optionArray = ["Alarm 1", "Alarm 2", "Alarm 3", "Alarm 4", "Alarm 5", "Alarm 6", "Alarm 7"]
         //Its Id Values and its optional
         ruleSelect.optionIds = [1,2,3,4,5,6,7]
         
         ruleSelect.didSelect{(selectedText , index ,id) in
             self.idToLoad = id
         }
+        
+        //ruleSelect.textColor = NSUIColor.black
+        ruleSelect.borderColor = UIColor.black
+        ruleSelect.rowBackgroundColor = UIColor.black
     }
     
     private func randomiseInputs(){
@@ -79,6 +88,11 @@ class MLViewController: UIViewController {
         let chart = Spark(sparkValues: numbers, numbers2, numbers3)
         
         MLChart.data = chart.data
+        
+        MLChart.xAxis.labelTextColor = UIColor.white
+        MLChart.leftAxis.labelTextColor = UIColor.white
+        MLChart.legend.textColor = UIColor.white
+        
     }
 
 }

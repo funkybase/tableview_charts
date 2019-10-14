@@ -16,7 +16,7 @@ class Spark {
         
         let data = LineChartData()
         
-        let colours = [NSUIColor.blue, NSUIColor.black, NSUIColor.red, NSUIColor.yellow, NSUIColor.green, NSUIColor.purple, NSUIColor.gray, NSUIColor.orange, NSUIColor.brown, NSUIColor.magenta]
+        let colours = [NSUIColor.blue, NSUIColor.white, NSUIColor.red, NSUIColor.yellow, NSUIColor.green, NSUIColor.purple, NSUIColor.gray, NSUIColor.orange, NSUIColor.brown, NSUIColor.magenta]
         
         var random = [Int]()
         
@@ -37,15 +37,18 @@ class Spark {
         for sparkValue in sparkValues{
             var lineChartEntry = [ChartDataEntry]()
             
-            let labelEntry = "Spark\(label)"
+            let labelEntry = "Alarm \(label)"
             for i in 0..<sparkValue.count {
                 let value = ChartDataEntry(x: Double(i), y: sparkValue[i])
                 lineChartEntry.append(value)
             }
             let line = LineChartDataSet(entries: lineChartEntry, label: labelEntry)
             line.colors = [colours[random[counter]]]
-            line.setCircleColor(.black)
+            line.setCircleColor(.white)
+            line.valueTextColor = UIColor.white
+            line.drawValuesEnabled = false
             line.circleRadius = 3
+            
             data.addDataSet(line)
             counter += 1
             label += 1

@@ -21,11 +21,9 @@ class ChartTableViewController: UITableViewController {
     var axisNames = [String]()
     var dragDist = CGFloat()
     var offset = CGFloat(0)
-    let numOfInputs: Int = 50
-    let pointsPerView: Int = 20
-    private func maxOffset() -> CGFloat {
-        return CGFloat((numOfInputs * pointsPerView) * -1)
-    }
+    let numOfInputs: Int = 1000
+    let pointsPerView: Int = 25
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +53,8 @@ class ChartTableViewController: UITableViewController {
             dragDist = translation.x
             chartTranslated(Charts: signalCharts, dX: offset + dragDist, dY: 0.0)
         }
-        print(offset)
-        print(dragDist)
+//        print(offset)
+//        print(dragDist)
     }
 
     // MARK: - Table view data source
@@ -86,6 +84,7 @@ class ChartTableViewController: UITableViewController {
         cell.yAxis.text = axisName
         cell.signalChart.dragXEnabled = true
         cell.signalChart.setVisibleXRangeMaximum(Double(pointsPerView))
+        cell.signalChart.pinchZoomEnabled = false
         cell.signalChart.doubleTapToZoomEnabled = false
         signalCharts.append(cell.signalChart)
         
@@ -300,4 +299,9 @@ class ChartTableViewController: UITableViewController {
             print("Nothing to do here")
         }
     }
+    
+    private func maxOffset() -> CGFloat {
+        return CGFloat((numOfInputs * pointsPerView) * -1)
+    }
+    
 }

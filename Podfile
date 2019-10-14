@@ -2,6 +2,7 @@
 # platform :ios, '9.0'
 pod 'Charts'
 pod 'iOSDropDown'
+pod 'SideMenu'
 
 target 'screen_three' do
   # Comment the next line if you don't want to use dynamic frameworks

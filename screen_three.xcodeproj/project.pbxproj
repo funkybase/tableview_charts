@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		26C2BADE7C2567FBD445F6E4 /* Pods_screen_threeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6D7BF01910825280EC4DEBF /* Pods_screen_threeUITests.framework */; };
+		2915B8C523546D25003C91A1 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2915B8C423546D25003C91A1 /* SideMenuViewController.swift */; };
 		2936BA37233B089E00879AB4 /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2936BA36233B089E00879AB4 /* PieChartViewController.swift */; };
 		29A02C07232F3060002A5604 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A02C06232F3060002A5604 /* AppDelegate.swift */; };
 		29A02C0C232F3060002A5604 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29A02C0A232F3060002A5604 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		00B3D4781D8B02E7DEB95BF6 /* Pods-screen_three.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-screen_three.release.xcconfig"; path = "Target Support Files/Pods-screen_three/Pods-screen_three.release.xcconfig"; sourceTree = "<group>"; };
+		2915B8C423546D25003C91A1 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		2936BA36233B089E00879AB4 /* PieChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartViewController.swift; sourceTree = "<group>"; };
 		29A02C03232F3060002A5604 /* screen_three.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = screen_three.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29A02C06232F3060002A5604 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,11 +126,12 @@
 		29A02C05232F3060002A5604 /* screen_three */ = {
 			isa = PBXGroup;
 			children = (
+				2936BA36233B089E00879AB4 /* PieChartViewController.swift */,
+				2915B8C423546D25003C91A1 /* SideMenuViewController.swift */,
 				29A02C36232F3A86002A5604 /* ChartTableViewController.swift */,
 				29A02C3A232F6170002A5604 /* Signal.swift */,
 				29A02C06232F3060002A5604 /* AppDelegate.swift */,
 				29A02C0A232F3060002A5604 /* Main.storyboard */,
-				2936BA36233B089E00879AB4 /* PieChartViewController.swift */,
 				29FDF2EC233B01870054D359 /* Spark.swift */,
 				29B49B6823346FDC00AACEFC /* MLViewController.swift */,
 				29A02C38232F3BDA002A5604 /* ChartTableViewCell.swift */,
@@ -401,6 +404,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2915B8C523546D25003C91A1 /* SideMenuViewController.swift in Sources */,
 				29B49B6923346FDC00AACEFC /* MLViewController.swift in Sources */,
 				29FDF2ED233B01870054D359 /* Spark.swift in Sources */,
 				29A02C39232F3BDA002A5604 /* ChartTableViewCell.swift in Sources */,
